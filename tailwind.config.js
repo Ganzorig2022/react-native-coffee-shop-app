@@ -2,16 +2,15 @@
 module.exports = {
   content: [
     './App.{js,jsx,ts,tsx}',
-    './screens/**/*.{js,jsx,ts,tsx}',
-    './components/**/*.{js,jsx,ts,tsx}',
+    './src/screens/**/*.{js,jsx,ts,tsx}',
+    './src/components/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
-      fontFamily: {
-        body: ['Poppins', 'sans-serif'],
-      },
-      color: {
+      colors: {
         customOrange: '#D3A762',
+        gray100: '#EAEAEA',
+        gray500: '#969495',
       },
     },
   },

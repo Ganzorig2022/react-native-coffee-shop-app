@@ -1,17 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import StartScreen from './screens/StartScreen';
-import HomeScreen from './screens/HomeScreen';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import DetailsScreen from './screens/DetailsScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ScanScreen from './screens/ScanScreen';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import StartScreen from './src/screens/StartScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import DetailsScreen from './src/screens/DetailsScreen';
+import ScanScreen from './src/screens/ScanScreen';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
-import OrderScreen from './screens/OrderScreen';
-import ProfileScreen from './screens/ProfileScreen';
+import OrderScreen from './src/screens/OrderScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 
 export type RootStackParamList = {
   Start: undefined;
@@ -99,37 +100,41 @@ const BottomTabs = () => {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name='BottomTabs'
-            component={BottomTabs}
-            options={{ headerShown: false, title: 'BottomTabs' }}
-          />
-          <Stack.Screen
-            name='Start'
-            component={StartScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name='Home'
-            component={HomeScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name='Details'
-            component={DetailsScreen}
-            options={{
-              headerShown: false,
-              presentation: 'modal',
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen
+                name='BottomTabs'
+                component={BottomTabs}
+                options={{ headerShown: false, title: 'BottomTabs' }}
+              />
+              <Stack.Screen
+                name='Start'
+                component={StartScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name='Home'
+                component={HomeScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name='Details'
+                component={DetailsScreen}
+                options={{
+                  headerShown: false,
+                  presentation: 'modal',
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
+      </SafeAreaProvider>
     </QueryClientProvider>
   );
 }

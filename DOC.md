@@ -60,29 +60,41 @@ npm install @react-navigation/native-stack
 
 ---
 
-4. Type checking with **TypeScript**
+## React Native Dropdown Picker
 
-   > https://reactnavigation.org/docs/typescript
+https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/usage
 
-- "/App.tsx" dr
+## React-native-elements (Cross Platform React Native UI toolkit)
 
-```js
-export type RootStackParamList = {
-  Home: undefined;
-  Paywall: undefined;
-  Demo: undefined;
-};
+MUI shig...
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+> https://reactnativeelements.com/
+
+> https://reactnativeelements.com/docs/installation#existing-expo-project
+
+## REDUX TOOLKIT
+
+> An Existing App
+> https://redux-toolkit.js.org/introduction/getting-started
+
+1. Installing
+
+```bash
+npm install @reduxjs/toolkit
 ```
 
-- "/components/ActionRow.tsx" dr "useNavigation dr
-
-```js
-export type NavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Home'
->;
+```bash
+npm install react-redux
 ```
 
-<!-- 1:20 dr zogsow.... -->
+---
+
+2. Wrap your application with the Provider
+
+> https://redux-toolkit.js.org/tutorials/rtk-query/#wrap-your-application-with-the-provider
+
+---
+
+3.  Creating Store, Slice, Hooks etc.
+
+> https://redux-toolkit.js.org/tutorials/typescript

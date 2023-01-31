@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
 import React from 'react';
 import Header from '../components/Header';
 import { useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../App';
+import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import HeroSection from '../components/HeroSection';
