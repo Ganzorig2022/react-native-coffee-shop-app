@@ -24,7 +24,10 @@ const Header = () => {
         />
         <View className='absolute right-5'>
           {items.length > 0 && (
-            <Text className='absolute right-3 -top-0 z-50 flex flex-row h-4 w-4 items-center justify-center text-center bg-[#D3A762] rounded-full bg-b text-[10px] text-white'>
+            <Text
+              className='absolute right-3 -top-0 z-50 flex flex-row h-4 w-4 items-center justify-center text-center bg-[#D3A762] rounded-full bg-b text-[10px] text-white'
+              style={{ borderRadius: 100 }}
+            >
               {items.length}
             </Text>
           )}

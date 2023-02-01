@@ -11,6 +11,7 @@ const ProductList = ({ products }: Props) => {
       data={products}
       horizontal
       keyExtractor={(item) => item.id}
+      showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => <ProductItem {...item} />}
     />
   );
