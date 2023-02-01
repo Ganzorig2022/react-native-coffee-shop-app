@@ -1,4 +1,7 @@
-interface Ingredient {}
+interface UserContextType {
+  isLoggedIn: boolean;
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
+}
 
 interface ProductType {
   title: string;

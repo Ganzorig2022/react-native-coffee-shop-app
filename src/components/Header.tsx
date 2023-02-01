@@ -15,7 +15,7 @@ const Header = () => {
   const items = useTypedSelector(selectCartItems); //from REDUX
 
   return (
-    <SafeAreaView className='mt-10 py-3'>
+    <SafeAreaView className='mt-10 py-3 border-b-[1px] border-gray-300 '>
       <View className='flex-row items-center justify-center relative bg-[##E5E5E5] '>
         <Image
           source={require('../../assets/Logo_small.png')}

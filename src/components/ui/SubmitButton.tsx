@@ -7,8 +7,9 @@ type Props = {
   bgColor: string;
   textColor: string;
   title: string;
+  onPress: () => void;
 };
-const SubmitButton = ({ bgColor, textColor, title }: Props) => {
+const SubmitButton = ({ bgColor, textColor, title, onPress }: Props) => {
   const dispatch = useTypedDispatch(); //redux
 
   const product = {
@@ -24,15 +25,17 @@ const SubmitButton = ({ bgColor, textColor, title }: Props) => {
   };
 
   return (
-    <View className='mt-5'>
+    <View className=''>
       <Button
-        onPress={() => addItemToBasket()}
+        onPress={onPress}
         title={title}
         buttonStyle={{
           backgroundColor: bgColor,
           borderRadius: 3,
         }}
         titleStyle={{ color: textColor }}
+        // type='outline'
+        className='rounded-sm'
       />
     </View>
   );
