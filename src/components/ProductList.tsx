@@ -5,6 +5,7 @@ import ProductItem from './ProductItem';
 type Props = {
   products: ProductType[];
 };
+
 const ProductList = ({ products }: Props) => {
   return (
     <FlatList

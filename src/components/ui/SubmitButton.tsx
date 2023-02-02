@@ -7,7 +7,7 @@ type Props = {
   bgColor: string;
   textColor: string;
   title: string;
-  onPress: () => void;
+  onPress?: () => void;
 };
 const SubmitButton = ({ bgColor, textColor, title, onPress }: Props) => {
   const dispatch = useTypedDispatch(); //redux

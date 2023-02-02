@@ -118,6 +118,7 @@ const FlavourChanges = () => {
 
       <View className=''>
         <SubmitButton
+          onPress={() => {}}
           bgColor={GlobalStyles.colors.orange}
           textColor={'white'}
           title={'Add to bag'}

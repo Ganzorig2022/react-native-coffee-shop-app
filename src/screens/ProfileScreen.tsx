@@ -19,6 +19,7 @@ const ProfileScreen = () => {
             uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60',
           }}
           resizeMode='contain'
+          style={{ width: 80, height: 80, borderRadius: 200 }}
           className='w-20 h-20 rounded-full'
         />
         <Text className='text-center font-bold'>Phone: 99022052</Text>
