@@ -24,11 +24,14 @@ const BackButton = ({ title }: Props) => {
   const navigation = useNavigation<NavigationProp>();
 
   return (
-    <View className='flex-row items-center justify-between w-full border-b border-gray-300 px-5 pb-3'>
-      <TouchableOpacity className='' onPress={() => navigation.goBack()}>
+    <View className='w-full border-b border-gray-300 px-5 pb-3'>
+      <TouchableOpacity
+        className='absolute top-0 left-6 z-10'
+        onPress={() => navigation.goBack()}
+      >
         <Ionicons name='arrow-back' size={24} color='black' />
       </TouchableOpacity>
-      <View className='basis-1/2'>
+      <View className='z-1 flex-row items-center justify-center'>
         <Text className='font-bold text-xl'>{title}</Text>
       </View>
     </View>

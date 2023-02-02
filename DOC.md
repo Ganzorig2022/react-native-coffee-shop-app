@@ -98,3 +98,11 @@ npm install react-redux
 3.  Creating Store, Slice, Hooks etc.
 
 > https://redux-toolkit.js.org/tutorials/typescript
+
+## REACT NATIVE OTP INPUTS
+
+> https://www.npmjs.com/package/@twotalltotems/react-native-otp-input
+
+```bash
+https://www.npmjs.com/package/@twotalltotems/react-native-otp-input
+```

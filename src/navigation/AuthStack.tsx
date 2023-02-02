@@ -7,6 +7,7 @@ import { RootStackParamList } from '../../App';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
+import OTPScreen from '../screens/OTPScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -24,6 +25,7 @@ const AuthStack = () => {
         <Stack.Screen name='Welcome' component={WelcomeScreen} />
         <Stack.Screen name='SignIn' component={SignInScreen} />
         <Stack.Screen name='SignUp' component={SignUpScreen} />
+        <Stack.Screen name='OTP' component={OTPScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

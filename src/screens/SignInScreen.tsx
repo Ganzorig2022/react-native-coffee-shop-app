@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   Image,
@@ -13,7 +12,6 @@ import { useState } from 'react';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { useAuthContext } from '../hooks/useAuth';
 import { GlobalStyles } from '../constants/GlobalStyles';
 import BackButton from '../components/ui/BackButton';
 
@@ -24,8 +22,16 @@ export type NavigationProp = NativeStackNavigationProp<
 
 const SignInScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { isLoggedIn, setIsLoggedIn } = useAuthContext();
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  // go to "../screens/OTPScreen.tsx" page
+  const submitHandler = () => {
+    // 1) Send phone number to FIREBASE
+    // 2) If it's okay, then go to "../screens/OTPScreen.tsx"
+    // setIsLoading(true);
+    navigation.navigate('OTP');
+  };
 
   return (
     <KeyboardAvoidingView
@@ -40,7 +46,7 @@ const SignInScreen = () => {
           <View className='flex-col items-center'>
             <Image
               source={require('../../assets/Frame.png')}
-              className='w-10 h-10 mt-20'
+              className='w-14 h-14 mt-20'
             />
             <Text className='text-3xl font-bold w-60 text-center'>
               Enter your mobile number
@@ -63,16 +69,20 @@ const SignInScreen = () => {
               />
             </View>
           </View>
-          <Button
-            onPress={() => setIsLoggedIn(true)}
-            title='Enter'
-            buttonStyle={{
-              backgroundColor: GlobalStyles.colors.orange,
-              borderRadius: 5,
-              width: '100%',
-            }}
-            titleStyle={{ color: 'white' }}
-          />
+          <View>
+            <Button
+              onPress={submitHandler}
+              title='Enter'
+              buttonStyle={{
+                backgroundColor: GlobalStyles.colors.orange,
+                borderRadius: 5,
+                width: '100%',
+              }}
+              titleStyle={{ color: 'white' }}
+              loading={isLoading}
+              loadingProps={{ animating: true }}
+            />
+          </View>
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
@@ -80,5 +90,3 @@ const SignInScreen = () => {
 };
 
 export default SignInScreen;
-
-const styles = StyleSheet.create({});

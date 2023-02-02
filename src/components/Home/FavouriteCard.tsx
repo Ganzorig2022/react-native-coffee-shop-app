@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchProducts } from '../utils/fetcher';
-import ProductList from './ProductList';
+import { fetchProducts } from '../../utils/fetcher';
+import ProductList from '../Product/ProductList';
 
 const FavouriteCard = () => {
   //   const [products, setProducts] = useState();

@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <View className='flex-row items-center justify-center'>
       <Image
-        source={require('../../assets/HeroImg1.png')}
+        source={require('../../../assets/HeroImg1.png')}
         className='mt-5'
         style={{ resizeMode: 'contain', height: 220 }}
       />

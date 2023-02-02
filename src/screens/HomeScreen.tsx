@@ -5,8 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import HeroSection from '../components/HeroSection';
-import FavouriteCard from '../components/FavouriteCard';
+import HeroSection from '../components/Home/HeroSection';
+import FavouriteCard from '../components/Home/FavouriteCard';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,

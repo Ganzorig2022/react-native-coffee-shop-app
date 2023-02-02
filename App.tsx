@@ -14,6 +14,7 @@ export type RootStackParamList = {
   SignUp: undefined;
   Order: undefined;
   Payment: undefined;
+  OTP: undefined;
 };
 
 export default function App() {
