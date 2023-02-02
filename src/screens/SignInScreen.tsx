@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   Image,
   TextInput,
@@ -10,14 +9,13 @@ import {
   Platform,
 } from 'react-native';
 import { Button } from '@rneui/themed';
-import { useState, useRef } from 'react';
-// import { useAuth } from '../hooks/useAuth';
+import { useState } from 'react';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { useAuthContext } from '../hooks/useAuth';
-import { Ionicons } from '@expo/vector-icons';
 import { GlobalStyles } from '../constants/GlobalStyles';
+import BackButton from '../components/ui/BackButton';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -36,12 +34,8 @@ const SignInScreen = () => {
       keyboardVerticalOffset={Platform.OS === 'ios' ? -40 : 0}
     >
       <SafeAreaView className='flex-col items-center justify-center my-20 mx-5'>
-        <TouchableOpacity
-          className='w-full'
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons name='arrow-back' size={24} color='black' />
-        </TouchableOpacity>
+        {/* Go back BUTTON */}
+        <BackButton title={'Sign In'} />
         <View className='flex flex-col items-center justify-between h-full w-full'>
           <View className='flex-col items-center'>
             <Image

@@ -12,16 +12,20 @@ import { RootStackParamList } from '../../App';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import CupSizes from '../components/Details/CupSizes';
 import FlavourChanges from '../components/Details/FlavourChanges';
-import { useTypedSelector } from '../redux/hooks';
-import { selectCartItems } from '../redux/cartSlice';
+import { useTypedDispatch, useTypedSelector } from '../redux/hooks';
+import { addToCart, selectCartItems } from '../redux/cartSlice';
+import { Button } from '@rneui/themed';
+import { v4 as uuidv4 } from 'uuid';
+import { GlobalStyles } from '../constants/GlobalStyles';
 
 type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
 //Homescreen-ees coffee-nii zurgan dr darhad data-gaa chireed irne.
 const DetailsScreen = ({ route, navigation }: DetailsProps) => {
+  const items = useTypedSelector(selectCartItems); //from REDUX
   const [productId, setProductId] = useState<string>('');
   const [product, setProduct] = useState<ProductType>();
-  const items = useTypedSelector(selectCartItems); //from REDUX
+  const dispatch = useTypedDispatch(); //redux
 
   // productId: 1
   // console.log(route.params.productId);
@@ -30,6 +34,20 @@ const DetailsScreen = ({ route, navigation }: DetailsProps) => {
     setProductId(route.params.productId);
     setProduct(route.params.product);
   }, [route]);
+
+  const submitHandler = () => {
+    const { image, title, description } = product as ProductType;
+    const newProduct = {
+      id: uuidv4(),
+      title,
+      amount: 2,
+      image,
+      price: 5.99,
+      description,
+    };
+
+    dispatch(addToCart(newProduct)); // to REDUX store
+  };
 
   return (
     <View className='bg-gray-100 h-full'>
@@ -46,7 +64,7 @@ const DetailsScreen = ({ route, navigation }: DetailsProps) => {
           <Ionicons name='chevron-back' size={24} color='white' />
         </Pressable>
         <Pressable
-          // onPress={navigation.goBack}
+          onPress={() => navigation.navigate('Order')}
           className='bg-gray-400/70 rounded-full flex items-center justify-center h-10 w-10 absolute top-10 right-5 z-10'
         >
           {items.length > 0 && (
@@ -68,6 +86,20 @@ const DetailsScreen = ({ route, navigation }: DetailsProps) => {
         <ScrollView>
           <FlavourChanges />
         </ScrollView>
+
+        {/* ADD TO BAG button */}
+        <View className=''>
+          <Button
+            onPress={submitHandler}
+            title='Add to bag'
+            buttonStyle={{
+              backgroundColor: GlobalStyles.colors.orange,
+              borderRadius: 3,
+            }}
+            titleStyle={{ color: 'white' }}
+            className='rounded-sm'
+          />
+        </View>
       </View>
     </View>
   );

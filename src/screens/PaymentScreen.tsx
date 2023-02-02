@@ -3,15 +3,15 @@ import React from 'react';
 import Layout from '../components/ui/Layout';
 import BackButton from '../components/ui/BackButton';
 
-const ScanScreen = () => {
+const PaymentScreen = () => {
   return (
     <Layout>
-      <BackButton title={'Scan'} />
-      <Text>ScanScreen</Text>
+      <BackButton title='Payment' />
+      <Text>PaymentScreen</Text>
     </Layout>
   );
 };
 
-export default ScanScreen;
+export default PaymentScreen;
 
 const styles = StyleSheet.create({});

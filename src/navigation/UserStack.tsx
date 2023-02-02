@@ -10,6 +10,7 @@ import { RootStackParamList } from '../../App';
 import { BottomTabs } from './BottomTabs';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import PaymentScreen from '../screens/PaymentScreen';
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,14 @@ const UserStack = () => {
               <Stack.Screen
                 name='Details'
                 component={DetailsScreen}
+                options={{
+                  headerShown: false,
+                  presentation: 'modal',
+                }}
+              />
+              <Stack.Screen
+                name='Payment'
+                component={PaymentScreen}
                 options={{
                   headerShown: false,
                   presentation: 'modal',

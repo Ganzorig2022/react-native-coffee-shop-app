@@ -11,7 +11,7 @@ const ProductList = ({ products }: Props) => {
     <FlatList
       data={products}
       horizontal
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item, idx) => item.id}
       showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => <ProductItem {...item} />}
     />

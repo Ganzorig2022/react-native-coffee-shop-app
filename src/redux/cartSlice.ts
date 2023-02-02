@@ -51,6 +51,7 @@ export const cartSlice = createSlice({
 
 export const { addToCart, removeFromCart } = cartSlice.actions;
 
+//SELECTORS
 // Other code such as selectors can use the imported `RootState` type
 export const selectCartItems = (state: RootState) => state.cart.items;
 

@@ -1,4 +1,5 @@
 import './src/firebase/firebase'; //firebase config
+import 'react-native-get-random-values';
 import RootNavigation from './src/navigation'; //index.tsx
 import { useEffect } from 'react';
 import { LogBox } from 'react-native';
@@ -11,6 +12,8 @@ export type RootStackParamList = {
   BottomTabs: undefined;
   SignIn: undefined;
   SignUp: undefined;
+  Order: undefined;
+  Payment: undefined;
 };
 
 export default function App() {

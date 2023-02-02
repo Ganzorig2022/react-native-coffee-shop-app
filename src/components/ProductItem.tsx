@@ -36,7 +36,7 @@ const ProductItem = ({
           <Image
             source={{ uri: image }}
             className='h-40 w-44 p-10 rounded-md'
-            style={{ resizeMode: 'contain' }}
+            style={{ resizeMode: 'cover' }}
           />
         </View>
         <View className='flex-col mt-2'>

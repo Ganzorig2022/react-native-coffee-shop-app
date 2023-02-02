@@ -4,7 +4,6 @@ import {
   View,
   TextInput,
   ScrollView,
-  LogBox,
   TouchableOpacity,
 } from 'react-native';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ import {
 } from '../../constants/DropDownItems';
 import { Ionicons } from '@expo/vector-icons';
 import { GlobalStyles } from '../../constants/GlobalStyles';
-import SubmitButton from '../ui/SubmitButton';
 
 type ClickedType = {
   milk: boolean;
@@ -115,15 +113,6 @@ const FlavourChanges = () => {
         isClicked={isClicked.whip}
         clickHandler={clickHandler}
       />
-
-      <View className=''>
-        <SubmitButton
-          onPress={() => {}}
-          bgColor={GlobalStyles.colors.orange}
-          textColor={'white'}
-          title={'Add to bag'}
-        />
-      </View>
     </View>
   );
 };
