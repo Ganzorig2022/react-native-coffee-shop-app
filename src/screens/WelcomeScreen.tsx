@@ -12,6 +12,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import Lottie from 'lottie-react-native';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -28,6 +29,16 @@ const WelcomeScreen = () => {
           source={require('../../assets/Logo.png')}
           className='h-40 p-10'
           style={{ resizeMode: 'contain' }}
+        />
+        <Lottie
+          // source={require('../../assets/json/135470-work-place-animation.json')}
+          source={{
+            uri: 'https://assets9.lottiefiles.com/packages/lf20_4mu3hoco.json',
+          }}
+          autoPlay
+          loop
+          style={{ width: 200, height: 200 }}
+          resizeMode='cover'
         />
       </TouchableOpacity>
       <View className='w-full mt-10'>

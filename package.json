@@ -21,6 +21,7 @@
     "expo": "~47.0.12",
     "expo-status-bar": "~1.4.2",
     "firebase": "^9.16.0",
+    "lottie-react-native": "5.1.4",
     "nativewind": "^2.0.11",
     "react": "18.1.0",
     "react-dom": "18.1.0",
