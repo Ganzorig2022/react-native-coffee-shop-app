@@ -5,17 +5,17 @@ import BackButton from '../components/ui/BackButton';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { useAuthContext } from '../hooks/useAuth';
 import { GlobalStyles } from '../constants/GlobalStyles';
 import { Button } from '@rneui/themed';
+import { useAuthContext } from '../context/authProvider';
 
-export type NavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'SignIn'
->;
+// export type NavigationProp = NativeStackNavigationProp<
+//   RootStackParamList,
+//   'SignIn'
+// >;
 
 const OTPScreen = () => {
-  const navigation = useNavigation<NavigationProp>();
+  // const navigation = useNavigation<NavigationProp>();
   const { setIsLoggedIn } = useAuthContext();
   const firstInput = React.createRef<TextInput>();
   const secondInput = React.createRef<TextInput>();
@@ -32,7 +32,6 @@ const OTPScreen = () => {
     // setIsLoading(true);
     setIsLoggedIn(true);
   };
-  console.log(otp);
 
   return (
     <Layout>

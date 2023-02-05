@@ -106,3 +106,57 @@ npm install react-redux
 ```bash
 https://www.npmjs.com/package/@twotalltotems/react-native-otp-input
 ```
+
+## ENV - react-native-dotenv
+
+> https://www.npmjs.com/package/react-native-dotenv
+
+## React Native Firebase
+
+1. Installing firebase app
+
+> https://rnfirebase.io/
+
+```bash
+npm install --save @react-native-firebase/app
+```
+
+2. Adding Custom Native Code (because Expo Go doesn't support it)
+
+> https://docs.expo.dev/development/create-development-builds/
+
+3. Creating development builds (because it requires)
+
+> https://docs.expo.dev/development/create-development-builds/
+
+```bash
+npm install -g eas-cli
+```
+
+```bash
+npx expo install expo-dev-client
+```
+
+4. Create and install the development build on an Android Emulator
+
+```bash
+eas build --profile development --platform android
+```
+
+4. Installing Google Sign-In library
+
+> https://rnfirebase.io/auth/social-auth
+
+```bash
+npx expo install @react-native-google-signin/google-signin
+```
+
+5. "/app.json" dotor huulna
+
+```js
+ "plugins": ["@react-native-google-signin/google-signin"]
+```
+
+6.
+
+<!-- https://www.youtube.com/watch?v=d_Vf41Sb0v0 -->

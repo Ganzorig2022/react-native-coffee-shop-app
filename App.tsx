@@ -3,7 +3,7 @@ import 'react-native-get-random-values';
 import RootNavigation from './src/navigation'; //index.tsx
 import { useEffect } from 'react';
 import { LogBox } from 'react-native';
-import UserContextProvider from './src/hooks/useAuth';
+import UserContextProvider from './src/context/authProvider';
 
 export type RootStackParamList = {
   Welcome: undefined;

@@ -14,6 +14,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { GlobalStyles } from '../constants/GlobalStyles';
 import BackButton from '../components/ui/BackButton';
+import { auth } from '../firebase/firebase';
+import OAuthButtons from '../components/Login/OAuthButtons';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -42,11 +44,11 @@ const SignInScreen = () => {
       <SafeAreaView className='flex-col items-center justify-center my-20 mx-5'>
         {/* Go back BUTTON */}
         <BackButton title={'Sign In'} />
-        <View className='flex flex-col items-center justify-between h-full w-full'>
+        <View className='flex-col items-center justify-between h-full w-full'>
           <View className='flex-col items-center'>
             <Image
               source={require('../../assets/Frame.png')}
-              className='w-14 h-14 mt-20'
+              className='w-14 h-14 mt-10'
             />
             <Text className='text-3xl font-bold w-60 text-center'>
               Enter your mobile number
@@ -69,6 +71,10 @@ const SignInScreen = () => {
               />
             </View>
           </View>
+          <Text className='font-bold text-gray-400 text-xl'>OR</Text>
+          {/* GOOGLE LOGIN */}
+          <OAuthButtons />
+          {/* SUBMIT BUTTON */}
           <View>
             <Button
               onPress={submitHandler}

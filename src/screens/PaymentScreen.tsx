@@ -12,6 +12,7 @@ export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'BottomTabs'
 >;
+
 const PaymentScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const [visible, setVisible] = useState(false);

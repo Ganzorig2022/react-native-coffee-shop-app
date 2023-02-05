@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Header from '../components/Header';
 import { Ionicons } from '@expo/vector-icons';
-import { useAuthContext } from '../hooks/useAuth';
+import { useAuthContext } from '../context/authProvider';
 
 const ProfileScreen = () => {
   const { setIsLoggedIn } = useAuthContext();
