@@ -29,8 +29,9 @@ const OTPScreen = () => {
     secondInput.current?.clear();
     thirdInput.current?.clear();
     fourthInput.current?.clear();
+
     // setIsLoading(true);
-    setIsLoggedIn(true);
+    // setIsLoggedIn(true);
   };
 
   return (

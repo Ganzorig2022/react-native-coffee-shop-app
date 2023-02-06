@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "960003590514",
+    "project_id": "react-native-coffee-shop",
+    "storage_bucket": "react-native-coffee-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960003590514:android:d732d25d006a62293075eb",
+        "android_client_info": {
+          "package_name": "com.ganzorig2023.reactnativecoffeeshopapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960003590514-mmcgvroh6tn5r1t8p1g07vi26vpa349u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ganzorig2023.reactnativecoffeeshopapp",
+            "certificate_hash": "2e5143b1d29174bf15f677d2224087b53b40a3b9"
+          }
+        },
+        {
+          "client_id": "960003590514-me9o75dpljik5rqe449176ebi0bi40eh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZa_CxyWPqZ3aAEKt1-yqrdRi3B12j0Uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960003590514-04vcu0l0u1m7kj5umjtjg67e4vk8qc8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

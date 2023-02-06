@@ -137,7 +137,7 @@ npm install -g eas-cli
 npx expo install expo-dev-client
 ```
 
-4. Create and install the development build on an Android Emulator
+4. **Create and install the development build on an Android Emulator**
 
 ```bash
 eas build --profile development --platform android
@@ -157,6 +157,26 @@ npx expo install @react-native-google-signin/google-signin
  "plugins": ["@react-native-google-signin/google-signin"]
 ```
 
-6.
+6. **Create and install the development build on an IOS Emulator** Herwee IOS dr setup hiiwel
+   "eas.json" dotor
+
+```js
+ "simulator": true
+```
+
+7. Credentials --> Android --> set up a new keystore--> Create a new Build Credentials Config --> ENTER --> ENTER --> SHA1 : 2E:51:43:B1:D2:91:74:BF:15:F6:77:D2:22:40:87:B5:3B:40:A3:B9-iig
+
+8. firebase console --> Android App --> copyd-no
+
+```bash
+npx eas credentials
+```
+
+huulna.
 
 <!-- https://www.youtube.com/watch?v=d_Vf41Sb0v0 -->
+<!-- https://www.youtube.com/watch?v=d_Vf41Sb0v0&t=513s -->
+
+```bash
+eas build --profile development-simulator --platform ios
+```
