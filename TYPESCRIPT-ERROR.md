@@ -53,3 +53,11 @@ CORRECT --> const { bio, name, username } = originalUserInfo as User;
 > https://stackoverflow.com/questions/71791207/how-to-setstate-with-an-object-in-typescript-error-ts2345
 
 CORRECT --> setProfileInfo((prev) => ({ ...prev, bio, name, username } as User));
+
+## TYPE ERROR -
+
+```js
+type Props = {
+  setOpen: Dispatch<SetStateAction<boolean>>,
+};
+```

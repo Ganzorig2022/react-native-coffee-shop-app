@@ -11,11 +11,6 @@ interface ProductType {
   id: string;
 }
 
-interface ItemsType {
-  label: string;
-  value: string;
-}
-
 interface Products {
   id: string;
   title: string;
@@ -23,4 +18,19 @@ interface Products {
   price: number;
   description: string;
   image: string;
+  details: CoffeeDetailsType;
+  // createdAt: Date;
+}
+
+interface ItemsType {
+  label: string;
+  value: string;
+}
+
+interface CoffeeDetailsType {
+  size: string;
+  milk: string;
+  shot: string;
+  foam: string;
+  whip: string;
 }

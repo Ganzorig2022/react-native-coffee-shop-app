@@ -31,7 +31,7 @@ const OTPScreen = () => {
     fourthInput.current?.clear();
 
     // setIsLoading(true);
-    // setIsLoggedIn(true);
+    setIsLoggedIn(true);
   };
 
   return (

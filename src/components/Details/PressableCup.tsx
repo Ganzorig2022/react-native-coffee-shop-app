@@ -6,14 +6,17 @@ type Props = {
   id: string;
   image: any;
   name: string;
+  size: string;
+  detailsHandler: (name: string, value: string) => void;
 };
 
-const PressableCup = ({ id, image, name }: Props) => {
+const PressableCup = ({ id, image, name, size, detailsHandler }: Props) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const toggleSelect = () => {
     // 👇️ set to true
     setIsClicked((prev) => !prev);
+    detailsHandler('size', size);
   };
 
   return (
@@ -25,7 +28,7 @@ const PressableCup = ({ id, image, name }: Props) => {
         borderless: true,
         radius: 40,
       }}
-      className={`rounded-full ml-5 ${
+      className={`rounded-full ml-3 w-14 h-14 items-center ${
         isClicked && 'bg-orange-200 border border-orange-400'
       }`}
     >
@@ -34,7 +37,7 @@ const PressableCup = ({ id, image, name }: Props) => {
         className='h-10 w-10'
         style={{ resizeMode: 'contain' }}
       />
-      <Text className='text-gray-300'>{name}</Text>
+      <Text className='text-gray-300 text-[10px] mt-2'>{name}</Text>
     </Pressable>
   );
 };

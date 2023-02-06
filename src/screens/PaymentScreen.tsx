@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { Text, View, Image, Alert } from 'react-native';
 import { useState } from 'react';
 import Layout from '../components/ui/Layout';
 import BackButton from '../components/ui/BackButton';
@@ -7,6 +7,18 @@ import { GlobalStyles } from '../constants/GlobalStyles';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from 'firebase/firestore';
+import { db } from '../firebase/firebase';
+import { useSelector } from 'react-redux';
+import { selectCartItems } from '../redux/cartSlice';
+import { documentIdState } from '../recoil/userIdAtom';
+import { useRecoilState } from 'recoil';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -14,15 +26,35 @@ export type NavigationProp = NativeStackNavigationProp<
 >;
 
 const PaymentScreen = () => {
+  const items = useSelector(selectCartItems);
   const navigation = useNavigation<NavigationProp>();
   const [visible, setVisible] = useState(false);
+  const [documentId, setDocumentId] = useRecoilState(documentIdState);
 
   const toggleOverlay = () => {
     setVisible(!visible);
   };
 
-  const submitHandler = () => {
-    navigation.navigate('Home');
+  //save order data to FIREBASE / FIRESTORE
+  const submitHandler = async () => {
+    // https://firebase.google.com/docs/firestore/manage-data/add-data
+    if (items.length > 0) {
+      //updating with timestamp
+      const newItems = items.map((item) => ({
+        ...item,
+        createdAt: serverTimestamp(),
+      }));
+      //then save data to...
+      const docRef = await addDoc(collection(db, 'Orders'), {
+        ...newItems,
+      });
+      setDocumentId(docRef.id as any);
+
+      navigation.navigate('Home');
+    } else {
+      Alert.alert('Please choose any product');
+      return;
+    }
   };
 
   return (
@@ -94,5 +126,3 @@ const PaymentScreen = () => {
 };
 
 export default PaymentScreen;
-
-const styles = StyleSheet.create({});

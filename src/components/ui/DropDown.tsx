@@ -13,6 +13,7 @@ type Props = {
   clickHandler: (value: string) => void;
   //   setIsClicked: Dispatch<SetStateAction<ClickedType>>;
   //   setValue: Dispatch<SetStateAction<string>>;
+  detailsHandler: (name: string, value: string) => void;
 };
 
 const DropDown = ({
@@ -23,6 +24,7 @@ const DropDown = ({
   setOpen,
   isClicked,
   clickHandler,
+  detailsHandler,
 }: Props) => {
   const [data, setData] = useState<string>('');
   const [value, setValue] = useState('');
@@ -56,12 +58,13 @@ const DropDown = ({
         }}
         onPress={() => clickHandler(id)}
         onClose={() => clickHandler(id)}
-        onSelectItem={() => clickHandler(id)}
+        onSelectItem={() => {
+          clickHandler(id);
+          detailsHandler(id, value);
+        }}
       />
     </View>
   );
 };
 
 export default DropDown;
-
-const styles = StyleSheet.create({});

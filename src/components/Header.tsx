@@ -16,7 +16,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'Order'
+  'Bag'
 >;
 
 const Header = () => {
@@ -33,7 +33,7 @@ const Header = () => {
         />
         <TouchableOpacity
           className='absolute right-5'
-          onPress={() => navigation.navigate('Order')}
+          onPress={() => navigation.navigate('Bag')}
         >
           {items.length > 0 && (
             <Text

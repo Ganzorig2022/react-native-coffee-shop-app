@@ -8,6 +8,7 @@ import { RootStackParamList } from '../../App';
 import { BottomTabs } from './BottomTabs';
 import DetailsScreen from '../screens/DetailsScreen';
 import PaymentScreen from '../screens/PaymentScreen';
+import BagScreen from '../screens/BagScreen';
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,14 @@ const UserStack = () => {
               <Stack.Screen
                 name='Details'
                 component={DetailsScreen}
+                options={{
+                  headerShown: false,
+                  presentation: 'modal',
+                }}
+              />
+              <Stack.Screen
+                name='Bag'
+                component={BagScreen}
                 options={{
                   headerShown: false,
                   presentation: 'modal',

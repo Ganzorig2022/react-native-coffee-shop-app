@@ -2,11 +2,10 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  ScrollView,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DropDown from '../ui/DropDown';
 import {
   MilkItems,
@@ -23,7 +22,11 @@ type ClickedType = {
   shot: boolean;
 };
 
-const FlavourChanges = () => {
+type Props = {
+  detailsHandler: (name: string, value: string) => void;
+};
+
+const FlavourChanges = ({ detailsHandler }: Props) => {
   const [milkOpen, setMilkOpen] = useState(false);
   const [foamOpen, setFoamOpen] = useState(false);
   const [whippingOpen, setWhippingOpen] = useState(false);
@@ -41,12 +44,17 @@ const FlavourChanges = () => {
     });
   };
 
+  //incrementing shot's value
   const increment = () => {
     setShotsValue((prev) => prev + 1);
   };
   const decrement = () => {
     if (shotsValue > 0) setShotsValue((prev) => prev - 1);
   };
+
+  useEffect(() => {
+    detailsHandler('shot', shotsValue.toString());
+  }, [shotsValue]);
 
   return (
     <View className='py-5 mx-5 flex-1'>
@@ -60,6 +68,7 @@ const FlavourChanges = () => {
         setOpen={setMilkOpen}
         isClicked={isClicked.milk}
         clickHandler={clickHandler}
+        detailsHandler={detailsHandler}
       />
 
       <TouchableOpacity className='' onPress={() => clickHandler('shot')}>
@@ -75,22 +84,31 @@ const FlavourChanges = () => {
             <Text>{shotsValue} shots</Text>
           </View>
           <View className='flex-row items-center justify-between space-x-4 ml-5 p-2'>
-            <Ionicons
-              name='remove-outline'
-              size={24}
-              color={`${isClicked.shot ? GlobalStyles.colors.orange : 'black'}`}
+            <Pressable
               onPress={() => {
                 clickHandler('shot');
                 decrement();
               }}
-            />
+              // onPressOut={() => console.log('asd')}
+            >
+              <Ionicons
+                name='remove-outline'
+                size={24}
+                color={`${
+                  isClicked.shot ? GlobalStyles.colors.orange : 'black'
+                }`}
+              />
+            </Pressable>
             <Text>{shotsValue}</Text>
-            <Ionicons
-              name='add'
-              size={24}
-              color={`${isClicked.shot ? GlobalStyles.colors.orange : 'black'}`}
-              onPress={increment}
-            />
+            <Pressable onPress={increment}>
+              <Ionicons
+                name='add'
+                size={24}
+                color={`${
+                  isClicked.shot ? GlobalStyles.colors.orange : 'black'
+                }`}
+              />
+            </Pressable>
           </View>
         </View>
       </TouchableOpacity>
@@ -103,6 +121,7 @@ const FlavourChanges = () => {
         setOpen={setFoamOpen}
         isClicked={isClicked.foam}
         clickHandler={clickHandler}
+        detailsHandler={detailsHandler}
       />
       <DropDown
         id={'whip'}
@@ -112,11 +131,10 @@ const FlavourChanges = () => {
         setOpen={setWhippingOpen}
         isClicked={isClicked.whip}
         clickHandler={clickHandler}
+        detailsHandler={detailsHandler}
       />
     </View>
   );
 };
 
 export default FlavourChanges;
-
-const styles = StyleSheet.create({});

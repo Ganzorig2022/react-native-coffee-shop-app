@@ -4,6 +4,7 @@ import RootNavigation from './src/navigation'; //index.tsx
 import { useEffect } from 'react';
 import { LogBox } from 'react-native';
 import UserContextProvider from './src/context/authProvider';
+import { RecoilRoot } from 'recoil';
 
 export type RootStackParamList = {
   Welcome: undefined;
@@ -15,6 +16,7 @@ export type RootStackParamList = {
   Order: undefined;
   Payment: undefined;
   OTP: undefined;
+  Bag: undefined;
 };
 
 export default function App() {
@@ -27,7 +29,9 @@ export default function App() {
   return (
     <>
       <UserContextProvider>
-        <RootNavigation />
+        <RecoilRoot>
+          <RootNavigation />
+        </RecoilRoot>
       </UserContextProvider>
     </>
   );

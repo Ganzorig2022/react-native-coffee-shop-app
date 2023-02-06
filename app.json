@@ -2,7 +2,11 @@
   "expo": {
     "name": "react-native-coffee-shop-app",
     "slug": "react-native-coffee-shop-app",
-    "plugins": ["@react-native-google-signin/google-signin"],
+    "plugins": [
+      "@react-native-google-signin/google-signin",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
