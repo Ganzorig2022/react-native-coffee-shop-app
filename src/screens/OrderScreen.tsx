@@ -31,61 +31,43 @@ interface AllSuccessType extends Products {
 
 const OrderScreen = () => {
   const items = useTypedSelector(selectCartItems); //from REDUX
-  const totalPrice = useTypedSelector(selectCartTotal); //from REDUX
   const [index, setIndex] = useState(0);
   const navigation = useNavigation<OrderProps>();
   const [allSuccess, setAllSuccess] = useState<AllSuccessType[]>([]);
   const documentId = useRecoilValue(documentIdState); //from RECOIL
 
-  console.log('IDDDD', documentId);
-  // const success =
+  const getData = async () => {
+    const docRef = doc(db, 'Orders', documentId as any);
+    const docSnap = await getDoc(docRef);
+
+    let AllSuccess = [] as AllSuccessType[];
+
+    if (docSnap.exists()) {
+      // console.log(docSnap.data());
+      AllSuccess.push(...Object.values(docSnap.data()));
+    } else {
+      console.log('No such document!');
+    }
+    setAllSuccess(AllSuccess);
+  };
 
   useEffect(() => {
-    const getData = async () => {
-      // const q = query(collection(db, 'Orders'));
-      // const querySnapshot = await getDocs(q);
-
-      // let AllSuccess = [] as AllSuccessType[];
-
-      // querySnapshot.forEach((doc) => {
-      //   AllSuccess.push(doc.data() as any);
-      // });
-
-      const docRef = doc(db, 'Orders', documentId as any);
-      const docSnap = await getDoc(docRef);
-
-      let AllSuccess = [] as AllSuccessType[];
-
-      if (docSnap.exists()) {
-        AllSuccess.push(docSnap.data() as AllSuccessType);
-      } else {
-        console.log('No such document!');
-      }
-      setAllSuccess(AllSuccess);
-    };
-    getData();
+    //if there is document Id, then fetch data from FIREBASE
+    if (documentId.documentId !== '') {
+      getData();
+    }
   }, []);
 
-  console.log(allSuccess.length);
   return (
     <Layout>
       <BackButton title={'My Orders'} />
       <View className='flex-col justify-center items-start w-full mt-3 p-5'>
         <View className='items-start justify-between'>
-          {/* FLATLIST */}
-          {/* <FlatList
-            data={items}
-            keyExtractor={(item, idx) => item.id}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => <OrderItem {...item} />}
-            style={{ maxHeight: '100%' }}
-          /> */}
-
           {/* Tabs */}
           <>
             <Tab
               value={index}
-              onChange={(e) => setIndex(e)}
+              onChange={setIndex}
               dense
               indicatorStyle={{ backgroundColor: GlobalStyles.colors.orange }}
               titleStyle={{ color: 'black' }}
@@ -94,28 +76,14 @@ const OrderScreen = () => {
               <Tab.Item>Success</Tab.Item>
               <Tab.Item>Cancelled</Tab.Item>
             </Tab>
-
-            {index === 0 && (
-              <View className='red'>
-                <Text>asddadsad</Text>
-              </View>
-            )}
-            {index === 1 && (
-              <View className=''>
-                {allSuccess?.length > 0 &&
-                  allSuccess?.map((item) => (
-                    <Text key={item.id} className='text-yellow-300'>
-                      {item.title}
-                    </Text>
-                  ))}
-              </View>
-            )}
-            {index === 2 && (
-              <View className='red'>
-                <Text>asddadsad</Text>
-              </View>
-            )}
           </>
+          {/* FLATLIST */}
+          <FlatList
+            data={allSuccess}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <OrderItem {...item} index={index} />}
+            // style={{ maxHeight: '100%' }}
+          />
         </View>
       </View>
     </Layout>

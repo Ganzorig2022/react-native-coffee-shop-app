@@ -58,8 +58,6 @@ const DetailsScreen = ({ route, navigation }: DetailsProps) => {
     }
   };
 
-  // console.log(coffeeDetails.size);
-
   return (
     <View className='bg-gray-100 h-full'>
       <View className='h-full'>

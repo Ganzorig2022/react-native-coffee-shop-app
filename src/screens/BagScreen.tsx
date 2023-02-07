@@ -2,7 +2,6 @@ import { Text, View, FlatList } from 'react-native';
 import { useState, useEffect } from 'react';
 import Layout from '../components/ui/Layout';
 import BackButton from '../components/ui/BackButton';
-import OrderItem from '../components/Order/OrderItem';
 import { useTypedSelector } from '../redux/hooks';
 import { selectCartItems, selectCartTotal } from '../redux/cartSlice';
 import { Button } from '@rneui/themed';
@@ -10,13 +9,14 @@ import { GlobalStyles } from '../constants/GlobalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { useNavigation } from '@react-navigation/native';
+import BagItem from '../components/Bag/BagItem';
 
-type OrderProps = NativeStackNavigationProp<RootStackParamList, 'Order'>;
+type BagProps = NativeStackNavigationProp<RootStackParamList, 'Order'>;
 
 const BagScreen = () => {
   const items = useTypedSelector(selectCartItems); //from REDUX
   const totalPrice = useTypedSelector(selectCartTotal); //from REDUX
-  const navigation = useNavigation<OrderProps>();
+  const navigation = useNavigation<BagProps>();
   const [tax, setTax] = useState<number>(0);
 
   // 10% tax
@@ -38,7 +38,7 @@ const BagScreen = () => {
             data={items}
             keyExtractor={(item, idx) => item.id}
             showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => <OrderItem {...item} />}
+            renderItem={({ item }) => <BagItem {...item} />}
             style={{ maxHeight: '100%' }}
           />
 

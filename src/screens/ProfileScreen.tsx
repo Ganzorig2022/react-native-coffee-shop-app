@@ -3,10 +3,15 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Header from '../components/Header';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuthContext } from '../context/authProvider';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 
 const ProfileScreen = () => {
   const { setIsLoggedIn } = useAuthContext();
-  const submitHandler = () => {
+
+  // Log out
+  const submitHandler = async () => {
+    await signOut(auth).then(() => console.log('You are signed out'));
     setIsLoggedIn(false);
   };
 

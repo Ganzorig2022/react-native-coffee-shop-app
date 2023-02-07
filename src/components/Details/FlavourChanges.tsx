@@ -89,7 +89,6 @@ const FlavourChanges = ({ detailsHandler }: Props) => {
                 clickHandler('shot');
                 decrement();
               }}
-              // onPressOut={() => console.log('asd')}
             >
               <Ionicons
                 name='remove-outline'

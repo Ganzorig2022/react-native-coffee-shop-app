@@ -49,7 +49,6 @@ const PaymentScreen = () => {
         ...newItems,
       });
       setDocumentId(docRef.id as any);
-
       navigation.navigate('Home');
     } else {
       Alert.alert('Please choose any product');
