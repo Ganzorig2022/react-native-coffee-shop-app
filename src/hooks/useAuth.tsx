@@ -1,30 +1,32 @@
-// export const useAuth = () => {
-//   // const [user, setUser] = useState<FirebaseUser | null>(null);
-//   const [user, setUser] = useState(false);
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { useState, useEffect } from 'react';
+import { auth } from '../firebase/firebase';
 
-//   // useEffect(() => {
-//   //   const unsubscribeFromAuthStatusChanged = onAuthStateChanged(
-//   //     auth,
-//   //     (user) => {
-//   //       if (user) {
-//   //         // User is signed in, see docs for a list of available properties
-//   //         // https://firebase.google.com/docs/reference/js/firebase.User
-//   //         const uid = user.uid;
+export const useAuth = () => {
+  //   const [userId, setUserId] = useState<User | null>(null);
+  const [userId, setUserId] = useState<string>('');
 
-//   //         setUser(user);
-//   //         // ...
-//   //       } else {
-//   //         // User is signed out
-//   //         setUser(null);
-//   //       }
-//   //     }
-//   //   );
-//   //   return unsubscribeFromAuthStatusChanged;
-//   // }, []);
+  useEffect(() => {
+    const unsubscribeFromAuthStatusChanged = onAuthStateChanged(
+      auth,
+      (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          const uid = user.uid;
 
-//   // return user;
-//   return { user, setUser };
-//   //daily quota of 50/day
-// };
+          setUserId(uid);
+          // ...
+        } else {
+          // User is signed out
+          setUserId('');
+        }
+      }
+    );
+    return unsubscribeFromAuthStatusChanged;
+  }, []);
+
+  return userId;
+};
 
 //https://github.com/NikValdez/react-native-firebase-auth/tree/main/src/navigation

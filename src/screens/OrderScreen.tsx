@@ -18,10 +18,13 @@ import {
   orderBy,
   doc,
   getDoc,
+  documentId,
 } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useRecoilValue } from 'recoil';
 import { documentIdState } from '../recoil/userIdAtom';
+import { useAuth } from '../hooks/useAuth';
+import { orderSuccessState } from '../recoil/orderSuccessAtom';
 
 type OrderProps = NativeStackNavigationProp<RootStackParamList, 'Order'>;
 
@@ -31,19 +34,21 @@ interface AllSuccessType extends Products {
 
 const OrderScreen = () => {
   const items = useTypedSelector(selectCartItems); //from REDUX
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   const navigation = useNavigation<OrderProps>();
   const [allSuccess, setAllSuccess] = useState<AllSuccessType[]>([]);
   const documentId = useRecoilValue(documentIdState); //from RECOIL
+  const userId = useAuth();
+  const isOrderSuccess = useRecoilValue(orderSuccessState);
 
   const getData = async () => {
-    const docRef = doc(db, 'Orders', documentId as any);
+    const docRef = doc(db, 'Orders', userId);
     const docSnap = await getDoc(docRef);
 
     let AllSuccess = [] as AllSuccessType[];
 
     if (docSnap.exists()) {
-      // console.log(docSnap.data());
+      console.log(docSnap.data);
       AllSuccess.push(...Object.values(docSnap.data()));
     } else {
       console.log('No such document!');
@@ -52,11 +57,15 @@ const OrderScreen = () => {
   };
 
   useEffect(() => {
-    //if there is document Id, then fetch data from FIREBASE
-    if (documentId.documentId !== '') {
+    console.log('Order Screen useEffect renders...');
+    //if user logged in, then fetch data from FIREBASE
+    if (isOrderSuccess) {
+      console.log('useEffect OK bn');
       getData();
     }
   }, []);
+
+  console.log(allSuccess);
 
   return (
     <Layout>
@@ -77,13 +86,15 @@ const OrderScreen = () => {
               <Tab.Item>Cancelled</Tab.Item>
             </Tab>
           </>
+
           {/* FLATLIST */}
-          <FlatList
-            data={allSuccess}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <OrderItem {...item} index={index} />}
-            // style={{ maxHeight: '100%' }}
-          />
+          {allSuccess.length > 0 && (
+            <FlatList
+              data={allSuccess}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => <OrderItem {...item} index={index} />}
+            />
+          )}
         </View>
       </View>
     </Layout>

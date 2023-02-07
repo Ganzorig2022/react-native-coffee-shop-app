@@ -7,18 +7,14 @@ import { GlobalStyles } from '../constants/GlobalStyles';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useSelector } from 'react-redux';
 import { selectCartItems } from '../redux/cartSlice';
 import { documentIdState } from '../recoil/userIdAtom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useAuth } from '../hooks/useAuth';
+import { orderSuccessState } from '../recoil/orderSuccessAtom';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -29,7 +25,9 @@ const PaymentScreen = () => {
   const items = useSelector(selectCartItems);
   const navigation = useNavigation<NavigationProp>();
   const [visible, setVisible] = useState(false);
-  const [documentId, setDocumentId] = useRecoilState(documentIdState);
+  // const [documentId, setDocumentId] = useRecoilState(documentIdState);
+  const setIsSuccess = useSetRecoilState(orderSuccessState);
+  const userId = useAuth();
 
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -45,10 +43,10 @@ const PaymentScreen = () => {
         createdAt: serverTimestamp(),
       }));
       //then save data to...
-      const docRef = await addDoc(collection(db, 'Orders'), {
+      const docRef = await setDoc(doc(db, 'Orders', userId), {
         ...newItems,
       });
-      setDocumentId(docRef.id as any);
+      setIsSuccess(true);
       navigation.navigate('Home');
     } else {
       Alert.alert('Please choose any product');

@@ -9,7 +9,7 @@ import { auth } from '../firebase/firebase';
 const ProfileScreen = () => {
   const { setIsLoggedIn } = useAuthContext();
 
-  // Log out
+  // Log out from FIREBASE
   const submitHandler = async () => {
     await signOut(auth).then(() => console.log('You are signed out'));
     setIsLoggedIn(false);

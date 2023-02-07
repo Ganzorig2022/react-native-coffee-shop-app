@@ -4,6 +4,16 @@
 
 ## TYPE ERROR - Type 'Dispatch<hook>' is not assignable to type '() => void'
 
+```js
+import React, { SetStateAction, useState, Dispatch } from 'react';
+
+const [open, setOpen] = useState(false);
+
+type Props = {
+  setOpen: Dispatch<SetStateAction<boolean>>,
+};
+```
+
 > https://stackoverflow.com/questions/74061105/type-dispatchhook-is-not-assignable-to-type-void?rq=1
 
 ## TYPE ERROR - no index signature with a parameter of type 'string' was found on type ts7053
