@@ -13,6 +13,14 @@
             "useFrameworks": "static"
           }
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/OTP_logo.png",
+          "color": "#ffffff",
+          "sounds": ["./assets/notification.wav"]
+        }
       ]
     ],
     "version": "1.0.0",

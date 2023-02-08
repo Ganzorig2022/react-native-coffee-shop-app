@@ -7,13 +7,14 @@ import { GlobalStyles } from '../constants/GlobalStyles';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useSelector } from 'react-redux';
 import { selectCartItems } from '../redux/cartSlice';
 import { useSetRecoilState } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
 import { orderSuccessState } from '../recoil/orderSuccessAtom';
+import schedulePushNotification from '../notifications/localNotification';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -34,30 +35,33 @@ const PaymentScreen = () => {
 
   //save order data to FIREBASE / FIRESTORE
   const submitHandler = async () => {
-    // https://firebase.google.com/docs/firestore/manage-data/add-data
-    if (items.length > 0) {
-      //updating with timestamp
-      const newItems = items.map((item) => ({
-        ...item,
-        createdAt: serverTimestamp(),
-      }));
+    console.log('Notifications!!!!');
+    await schedulePushNotification();
 
-      //then save data to...
-      try {
-        console.log('works');
-        await setDoc(doc(db, 'Orders', userId), {
-          ...newItems,
-        });
-        console.log('works 2nd');
-        setIsSuccess(true);
-        navigation.navigate('Home');
-      } catch (error: any) {
-        console.log(error.message);
-      }
-    } else {
-      Alert.alert('Please choose any product');
-      return;
-    }
+    // https://firebase.google.com/docs/firestore/manage-data/add-data
+    // if (items.length > 0) {
+    //   //updating with timestamp
+    //   const newItems = items.map((item) => ({
+    //     ...item,
+    //     createdAt: serverTimestamp(),
+    //   }));
+
+    //   //then save MULTIPLE OBJECT data to...using BATCH...
+    //   try {
+    //     const docRef = doc(db, 'Orders', userId);
+    //     await setDoc(docRef, {
+    //       ...newItems,
+    //     });
+
+    //     setIsSuccess(true);
+    //     navigation.navigate('Home');
+    //   } catch (error: any) {
+    //     console.log(error.message);
+    //   }
+    // } else {
+    //   Alert.alert('Please choose any product');
+    //   return;
+    // }
   };
 
   return (
