@@ -18,6 +18,7 @@ import {
   orderBy,
   doc,
   getDoc,
+  onSnapshot,
   documentId,
 } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
@@ -41,28 +42,22 @@ const OrderScreen = () => {
   const userId = useAuth();
   const isOrderSuccess = useRecoilValue(orderSuccessState);
 
-  const getData = async () => {
-    const docRef = await doc(db, 'Orders', userId);
-    const docSnap = await getDoc(docRef);
-
-    let AllSuccess = [] as AllSuccessType[];
-
-    if (docSnap.exists()) {
-      console.log(docSnap.data);
-      AllSuccess.push(...Object.values(docSnap.data()));
-    } else {
-      console.log('No such document!');
-    }
-    setAllSuccess(AllSuccess);
-  };
-
   useEffect(() => {
     console.log('Order Screen useEffect renders...');
     //if user logged in, then fetch data from FIREBASE
-    getData();
-  }, []);
 
-  // console.log(allSuccess);
+    const unsub = onSnapshot(collection(db, 'Orders'), (snapshot) => {
+      let result = [] as AllSuccessType[];
+      snapshot.docs.forEach((doc) => {
+        result.push(doc?.data() as AllSuccessType);
+      });
+      setAllSuccess(result);
+    });
+
+    return () => {
+      unsub();
+    };
+  }, []);
 
   return (
     <Layout>
