@@ -33,12 +33,12 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (requestUserPermission()) {
+    if (requestUserPermission() as any) {
       //return fcm token for the device
       messaging()
         .getToken()
         .then((token) => {
-          console.log(token);
+          console.log('Use this token', token);
         });
     } else {
       console.log('Failed token status');
@@ -63,11 +63,12 @@ export default function App() {
       );
     });
 
-    // Register background handler
+    // Register background handler (outside the app)
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       console.log('Message handled in the background!', remoteMessage);
     });
 
+    //in-app notification
     const unsubscribe = messaging().onMessage(async (remoteMessage) => {
       Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
     });

@@ -180,3 +180,5 @@ huulna.
 ```bash
 eas build --profile development-simulator --platform ios
 ```
+
+<!-- https://www.youtube.com/watch?v=EaVG6wVZPyY&t=1007s -->

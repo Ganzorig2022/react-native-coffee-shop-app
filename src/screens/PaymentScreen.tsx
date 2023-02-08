@@ -11,8 +11,7 @@ import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useSelector } from 'react-redux';
 import { selectCartItems } from '../redux/cartSlice';
-import { documentIdState } from '../recoil/userIdAtom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
 import { orderSuccessState } from '../recoil/orderSuccessAtom';
 
@@ -42,12 +41,19 @@ const PaymentScreen = () => {
         ...item,
         createdAt: serverTimestamp(),
       }));
+
       //then save data to...
-      const docRef = await setDoc(doc(db, 'Orders', userId), {
-        ...newItems,
-      });
-      setIsSuccess(true);
-      navigation.navigate('Home');
+      try {
+        console.log('works');
+        await setDoc(doc(db, 'Orders', userId), {
+          ...newItems,
+        });
+        console.log('works 2nd');
+        setIsSuccess(true);
+        navigation.navigate('Home');
+      } catch (error: any) {
+        console.log(error.message);
+      }
     } else {
       Alert.alert('Please choose any product');
       return;
@@ -110,6 +116,7 @@ const PaymentScreen = () => {
                   borderWidth: 2,
                   width: 100,
                   height: 100,
+                  zIndex: 10,
                 }}
                 title=''
                 onPress={submitHandler}

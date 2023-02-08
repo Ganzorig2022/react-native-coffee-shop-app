@@ -42,7 +42,7 @@ const OrderScreen = () => {
   const isOrderSuccess = useRecoilValue(orderSuccessState);
 
   const getData = async () => {
-    const docRef = doc(db, 'Orders', userId);
+    const docRef = await doc(db, 'Orders', userId);
     const docSnap = await getDoc(docRef);
 
     let AllSuccess = [] as AllSuccessType[];
@@ -59,13 +59,10 @@ const OrderScreen = () => {
   useEffect(() => {
     console.log('Order Screen useEffect renders...');
     //if user logged in, then fetch data from FIREBASE
-    if (isOrderSuccess) {
-      console.log('useEffect OK bn');
-      getData();
-    }
+    getData();
   }, []);
 
-  console.log(allSuccess);
+  // console.log(allSuccess);
 
   return (
     <Layout>
