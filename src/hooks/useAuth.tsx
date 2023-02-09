@@ -23,7 +23,7 @@ export const useAuth = () => {
         }
       }
     );
-    return unsubscribeFromAuthStatusChanged;
+    return unsubscribeFromAuthStatusChanged();
   }, []);
 
   return userId;

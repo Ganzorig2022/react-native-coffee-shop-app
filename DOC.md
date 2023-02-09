@@ -1,7 +1,15 @@
 > https://github.com/expo/eas-cli
 
+### For starting development build
+
 ```bash
 npx expo start --dev-client
+```
+
+### For starting Expo GO
+
+```bash
+npx expo start
 ```
 
 ## 1 - Creating React-native App with EXPO and Typescript

@@ -51,8 +51,9 @@ const OrderScreen = () => {
       snapshot.docs.forEach((doc) => {
         result.push(doc?.data() as AllSuccessType);
       });
+
+      //@ts-ignore
       const newData = Object.values(...result) as AllSuccessType[];
-      // console.log(newData[0], 'SHUUUUUUUU');
       setAllSuccess(newData);
     });
 
