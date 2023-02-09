@@ -5,6 +5,10 @@ import { RootStackParamList } from '../../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { GlobalStyles } from '../../constants/GlobalStyles';
+import auth from '@react-native-firebase/auth';
+import { useRecoilState } from 'recoil';
+import { phoneNumberState } from '../../recoil/phoneNumberAtom';
+import { signInWithPhoneNumber } from '../../firebase/OTPhandler';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -12,21 +16,25 @@ export type NavigationProp = NativeStackNavigationProp<
 >;
 
 const PhoneNumber = () => {
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  // const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<NavigationProp>();
+  const [phoneNumber, setPhoneNumber] = useRecoilState(phoneNumberState);
 
   // go to "../screens/OTPScreen.tsx" page
-  const submitHandler = () => {
+  const submitHandler = async () => {
     // 1) Check if phone number is complete.
     if (phoneNumber.length === 8) {
       // 2) If it's okay, then go to "../screens/OTPScreen.tsx"
+      // const result = await signInWithPhoneNumber(`+976${phoneNumber}`);
       navigation.navigate('OTP');
       setPhoneNumber('');
     } else {
       Alert.alert('Please enter 8 digit number to request a code');
     }
   };
+
+  // console.log(phoneNumber);
 
   return (
     <View className='flex-col items-center'>

@@ -54,7 +54,7 @@ const SignInScreen = () => {
 
           {/* ========= 3) GOOGLE LOGIN ======= */}
           {/* <DividerText text={'Or sign In with gmail'} /> */}
-          {/* <OAuthButtons /> */}
+          <OAuthButtons />
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>

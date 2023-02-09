@@ -8,6 +8,10 @@ import { useNavigation } from '@react-navigation/native';
 import { GlobalStyles } from '../constants/GlobalStyles';
 import { Button } from '@rneui/themed';
 import { useAuthContext } from '../context/authProvider';
+import auth from '@react-native-firebase/auth';
+import { confirmCode } from '../firebase/OTPhandler';
+import { useRecoilValue } from 'recoil';
+import { otpState } from '../recoil/OtpAtom';
 
 // export type NavigationProp = NativeStackNavigationProp<
 //   RootStackParamList,
@@ -21,16 +25,22 @@ const OTPScreen = () => {
   const secondInput = React.createRef<TextInput>();
   const thirdInput = React.createRef<TextInput>();
   const fourthInput = React.createRef<TextInput>();
-  const [otp, setOtp] = useState({ 1: '', 2: '', 3: '', 4: '' });
+  const fifthInput = React.createRef<TextInput>();
+  const sixthInput = React.createRef<TextInput>();
+  const [otp, setOtp] = useState({ 1: '', 2: '', 3: '', 4: '', 5: '', 6: '' });
   const [isLoading, setIsLoading] = useState(false);
+  const otpValue = useRecoilValue(otpState);
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
     firstInput.current?.clear();
     secondInput.current?.clear();
     thirdInput.current?.clear();
     fourthInput.current?.clear();
+    fifthInput.current?.clear();
+    sixthInput.current?.clear();
 
-    // setIsLoading(true);
+    await confirmCode(otpValue);
+    setIsLoading(true);
     setIsLoggedIn(true);
   };
 
@@ -51,7 +61,7 @@ const OTPScreen = () => {
         <Text className='text-center p-2 font-semibold'>{'+976 99022052'}</Text>
       </View>
 
-      <View className='flex-row items-center space-x-5'>
+      <View className='flex-row items-center space-x-2'>
         <View className='mt-10 rounded border border-gray-400'>
           <TextInput
             className='text-3xl text-center px-3 py-4'
@@ -96,6 +106,30 @@ const OTPScreen = () => {
             ref={fourthInput}
             onChangeText={(text) => {
               setOtp({ ...otp, 4: text });
+              text && fifthInput.current?.focus();
+            }}
+          />
+        </View>
+        <View className='mt-10 rounded border border-gray-400'>
+          <TextInput
+            className='text-3xl text-center px-3 py-4'
+            maxLength={1}
+            keyboardType='number-pad'
+            ref={fifthInput}
+            onChangeText={(text) => {
+              setOtp({ ...otp, 5: text });
+              text && sixthInput.current?.focus();
+            }}
+          />
+        </View>
+        <View className='mt-10 rounded border border-gray-400'>
+          <TextInput
+            className='text-3xl text-center px-3 py-4'
+            maxLength={1}
+            keyboardType='number-pad'
+            ref={sixthInput}
+            onChangeText={(text) => {
+              setOtp({ ...otp, 6: text });
             }}
           />
         </View>
