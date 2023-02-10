@@ -39,7 +39,7 @@ const OTPScreen = () => {
     fifthInput.current?.clear();
     sixthInput.current?.clear();
 
-    await confirmCode(otpValue);
+    // await confirmCode(otpValue);
     setIsLoading(true);
     setIsLoggedIn(true);
   };

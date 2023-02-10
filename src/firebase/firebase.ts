@@ -2,6 +2,7 @@
 import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore, initializeFirestore } from 'firebase/firestore';
+import { getAnalytics } from 'firebase/analytics';
 
 import {
   FIREBASE_API_KEY,
@@ -34,4 +35,5 @@ const auth = getAuth(app);
 const db = initializeFirestore(app, {
   experimentalForceLongPolling: true,
 });
-export { app, auth, db };
+const analytics = getAnalytics();
+export { app, auth, db, analytics };

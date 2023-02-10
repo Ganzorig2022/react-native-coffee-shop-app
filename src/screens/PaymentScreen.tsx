@@ -15,6 +15,7 @@ import { useSetRecoilState } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
 import { orderSuccessState } from '../recoil/orderSuccessAtom';
 import schedulePushNotification from '../notifications/localNotification';
+import analytics from '@react-native-firebase/analytics';
 
 export type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -37,6 +38,12 @@ const PaymentScreen = () => {
   const submitHandler = async () => {
     console.log('Notifications!!!!');
     await schedulePushNotification();
+    await analytics().logEvent('basket', {
+      id: 3745092,
+      item: 'mens grey t-shirt',
+      description: ['round neck', 'long sleeved'],
+      size: 'L',
+    });
 
     // https://firebase.google.com/docs/firestore/manage-data/add-data
     // if (items.length > 0) {

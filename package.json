@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
+    "@react-native-firebase/analytics": "^17.1.0",
     "@react-native-firebase/app": "^17.0.0",
     "@react-native-firebase/auth": "^17.0.0",
+    "@react-native-firebase/crashlytics": "^17.1.0",
     "@react-native-firebase/messaging": "^17.0.0",
     "@react-native-google-signin/google-signin": "^9.0.2",
     "@react-navigation/bottom-tabs": "^6.5.3",
@@ -27,6 +29,7 @@
     "expo-dev-client": "~2.0.1",
     "expo-device": "~5.0.0",
     "expo-notifications": "~0.17.0",
+    "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "expo-updates": "~0.15.6",
     "firebase": "^9.16.0",
@@ -43,8 +46,7 @@
     "react-redux": "^8.0.5",
     "recoil": "^0.7.6",
     "redux-thunk": "^2.3.0",
-    "uuid": "^9.0.0",
-    "expo-splash-screen": "~0.17.5"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
